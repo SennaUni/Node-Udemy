@@ -1,7 +1,10 @@
+import OrdersProduct from '@modules/orders/typeorm/entity/OrdersProduct';
+
 import {
   Column,
   CreateDateColumn,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -10,6 +13,9 @@ import {
 class Product {
   @PrimaryGeneratedColumn('uuid')
   id: string;
+
+  @OneToMany(() => OrdersProduct, order_products => order_products.product)
+  order_products: OrdersProduct[];
 
   @Column()
   name: string;
